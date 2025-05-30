@@ -10,6 +10,9 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 app = Flask(__name__)
 
 @app.route("/whatsapp", methods=['POST'])
+
+
+
 def whatsapp_reply():
     incoming_msg = request.values.get('Body', '').strip().lower()
     print(f"User said: {incoming_msg}")
@@ -31,7 +34,21 @@ def whatsapp_reply():
         # AI reply via OpenAI
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": incoming_msg}]
+            messages=[
+                {"role": "system", "content": """
+                You are an assistant for the Indian Navy's logistics support team. Your job is to help vendors and suppliers with:
+
+                - Gate-in procedures for item delivery
+                - Updates on shipment status to Navy ships
+                - Providing clear guidance on delivery documents and access
+                - Maintaining a formal, respectful, and professional tone
+
+                If the question is unrelated to logistics, politely ask the user to contact the designated officer.
+
+                Reply in clear and concise English or Hindi as appropriate.
+                """},        temperature=0.5,
+        max_tokens=300,
+                {"role": "user", "content": incoming_msg}]
         )
         reply = response['choices'][0]['message']['content']
         msg.body(reply)
