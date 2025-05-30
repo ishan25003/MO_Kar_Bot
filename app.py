@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-client = OpenAI(api_key="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")
+client = OpenAI()
 
 app = Flask(__name__)
 
