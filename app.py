@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 	client = OpenAI(
-	    api_key="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",   # your real key
-	    project="proj_1I8UTWozyVJnv8jgnBRIC4Nj",            # your project ID
-	    organization="org-guKBg4cdSHH3wIpUhfVY5kwo"         # your org ID
-)
+	    api_key="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",  
+	    project="proj_1I8UTWozyVJnv8jgnBRIC4Nj",         
+	    organization="org-guKBg4cdSHH3wIpUhfVY5kwo"        
+	)
 
 app = Flask(__name__)
 
