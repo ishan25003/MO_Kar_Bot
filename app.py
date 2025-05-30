@@ -47,9 +47,10 @@ def whatsapp_reply():
                 If the question is unrelated to logistics, politely ask the user to contact the designated officer.
 
                 Reply in clear and concise English or Hindi as appropriate.
-                """},        temperature=0.5,
-        max_tokens=300,
-                {"role": "user", "content": incoming_msg}]
+                """},
+                {"role": "user", "content": incoming_msg}] ,
+            temperature=0.5,
+        max_tokens=300
         )
         reply = response['choices'][0]['message']['content']
         msg.body(reply)
